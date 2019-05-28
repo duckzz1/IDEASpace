@@ -1,25 +1,30 @@
 package cn.yang.Chess.Model.White;
 
+import cn.yang.Chess.Model.Coordinate;
 import cn.yang.Chess.Model.Piece;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
+
 public class White_King extends Piece {
-
-    public White_King(int row, int col) {
-        super(row, col);
+    public White_King(int x, int y) {
+        super(x, y);
+        this.setCamp(2);
     }
-
 
     @Override
     public void drawPiece(GraphicsContext g) {
-        setImage(new Image("cn/yang/Chess/View/img/Black_King.png"));
-        g.drawImage(getImage(), this.getCol() * 60, this.getRow() * 60, 60, 60);
 
+        if (isAlive()) {
+            setImage(new Image("cn/yang/Chess/View/img/White_King.png"));
+            g.drawImage(getImage(), this.getX() * 60, this.getY() * 60, 60, 60);
+        }
     }
 
     @Override
-    public void moveRule() {
-
+    public ArrayList<Coordinate> detectRoute() {
+        return detectForKing();
     }
+
 }
